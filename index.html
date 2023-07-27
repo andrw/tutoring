@@ -5,20 +5,21 @@
   </head>
   <body>
     <script>
-      
       function setup() {
   createCanvas(500, 500);
-  background(200);
+  background("grey");
   frameRate(250);
-  fill(EraseC.color)
-  rect(EraseC.x, EraseC.y, EraseC.w, EraseC.h)
+  fill(EraseChoice.color)
+  rect(EraseChoice.x, EraseChoice.y, EraseChoice.w, EraseChoice.h)
   fill(BlackC.color)
   rect(BlackC.x, BlackC.y, BlackC.w, BlackC.h)
-  fill(255, 0, 0)
-  rect(50, 490, 25, 10);
+  fill(redPencilChoice.color)
+  rect(redPencilChoice.x, redPencilChoice.y, redPencilChoice.w, redPencilChoice.h);
   fill(0, 255, 0)
   rect(75, 490, 25, 10);
 }
+
+
 
 function draw() {
 
@@ -28,7 +29,7 @@ function draw() {
 
 function mouseDragged() {
 
-  if (mouseX < 501 && mouseY < 490 - EraseC.weight / 2) {
+  if (mouseX < 501 && mouseY < 490 - EraseChoice.weight / 2) {
 
     line(mouseX, mouseY, pmouseX, pmouseY)
   }
@@ -43,15 +44,6 @@ var PencilChoice = function(color, x, y, w, h,weight) {
   this.h = h;
   this.weight = weight;
 };
-var EraseChoice = function(color, x, y, w, h, weight) {
-
-  this.color = color;
-  this.x = x;
-  this.y = y;
-  this.w = w;
-  this.h = h;
-  this.weight = weight;
-}
 
 var BlackC = {
 
@@ -65,10 +57,12 @@ var BlackC = {
 
 
 var redPencilChoice = new PencilChoice ("red", 50, 490, 25, 10, 1)
+var EraseChoice = new PencilChoice ("grey", 0, 490, 25, 10, 50)
+var BlackChoice = new PencilChoice ("black", )
 function mouseClicked() {
-  if (mouseX > EraseC.x && mouseX < EraseC.w && mouseY > EraseC.y) {
-    stroke(EraseC.color);
-    strokeWeight(EraseC.weight)
+  if (mouseX > EraseChoice.x && mouseX < EraseChoice.w && mouseY > EraseChoice.y) {
+    stroke(EraseChoice.color);
+    strokeWeight(EraseChoice.weight)
   } else if (mouseX < BlackC.w + BlackC.x && mouseX > BlackC.x && mouseY > BlackC.y) {
     stroke(BlackC.color);
     strokeWeight(BlackC.weight);
@@ -81,6 +75,7 @@ function mouseClicked() {
     strokeWeight(1);
   }
 }
+
     
     </script>
     <main>
